@@ -1,5 +1,5 @@
 # Programming_Languages
-C, C++, Java, Python etc
+C++, Java, Python etc
 
 # Data_Structures_Algorithms
 Arrays, Linked Lists, Stacks, Queues, Strings, Tries, Binary Trees, Graphs, Heaps, Sorting, Serching, Recursion, Greedy Algorithms, Kruskal Algorithms etc
@@ -47,5 +47,4 @@ Arrays, Linked Lists, Stacks, Queues, Strings, Tries, Binary Trees, Graphs, Heap
 	Top-down Memorization
 	Bottom-up Tabulation
 	Optimizing Bottom-up Tabulation
-  Common DP-related coding interview problems
 
