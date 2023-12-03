@@ -1,5 +1,5 @@
 # Programming_Languages
-C++, Java, Python etc
+C++, Java, Python, Rust, C#, C etc
 
 # Data_Structures_Algorithms
 Arrays, Linked Lists, Stacks, Queues, Strings, Tries, Binary Trees, Graphs, Heaps, Sorting, Serching, Recursion, Greedy Algorithms, Kruskal Algorithms etc
