@@ -2,21 +2,20 @@ import java.util.*;
 
 class Bubble_Sort
 {
-    public static void readingArray(int[] arr)
+    public static void readingArray(int[] arr, Scanner read)
     {
-        Scanner read = new Scanner(System.in);  
 
         for(int i=0;i<arr.length;i++)
         {
             arr[i]=read.nextInt();      
         }
 
-        read.close();
     }
 
     public static void bubbleSort(int[] arr)
     {
         
+        int cnt = 0;                    // Counter to check if Array is already Sorted
         for(int j=0;j<arr.length-1;j++)
         {
             for(int k=0;k<arr.length-1-j;k++)
@@ -26,9 +25,18 @@ class Bubble_Sort
                     int temp = arr[k];
                     arr[k] = arr[k+1];
                     arr[k+1] = temp;
+                    cnt++;                // Counter to check, If there is no Swapping, Indicating Array is Sorted
                 }
 
             }
+            
+            if(cnt==0)
+            {
+                System.out.println("\n"+"The Array is Sorted"+"\n");
+                break;                   // Checks if it's Sorted Array, Will reduce complexity from O(n^2) to O(n)
+                
+            }
+            
         }
 
     }
@@ -68,8 +76,10 @@ class Bubble_Sort
         int [] arr = new int[size];                         // Declaring the Array
 
                                                
-        readingArray(arr);                                  // Reading the Array Elements
+        readingArray(arr, read);                            // Reading the Array Elements
+       
         read.close();                                       // Closing the Scanner
+        
         preDisplayArray(arr);                               // Before Sorting
         
         bubbleSort(arr);                                    // Sorting the Array
