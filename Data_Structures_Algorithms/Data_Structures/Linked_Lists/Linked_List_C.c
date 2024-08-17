@@ -3,7 +3,7 @@
 
 struct Node
 {
-    int data;                  // Creating Linked List with int data & Linked List reference
+    int data;                  // Creating Linked List with int data & node pointer reference
     struct Node* next;
 };
 
@@ -14,6 +14,16 @@ void TraverseLinkedList(struct Node* ptr)
         printf("%d\n",ptr->data);
         ptr=ptr->next;
     }
+}
+
+struct Node* insertFirstNode(struct Node* head, int data)
+{
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;    // updating data of new node
+    ptr->next = head;    //Linking next of new node with head
+
+    return ptr;          //returning pointer to new node
+
 }
 
 int main()
@@ -32,6 +42,9 @@ int main()
     n2->next = n3;
     n3->next = NULL;
 
+    TraverseLinkedList(head);
+    head = insertFirstNode(head, 60);
+    printf("\nThe Updated Linked List is below\n");  // After node insertion at frst location
     TraverseLinkedList(head);
 
     return 0;
