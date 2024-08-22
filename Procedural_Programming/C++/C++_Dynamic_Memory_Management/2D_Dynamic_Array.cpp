@@ -25,7 +25,7 @@ void func2DArray()
     }
 
     //To Verify the Array
-    cout<<matrix[2][2]<<endl;   //Array indexing
+    cout<<matrix[2][9]<<endl;   //Array indexing
     cout<<*(*(matrix +2) + 2);  //Array Derefrencing
     
 }
