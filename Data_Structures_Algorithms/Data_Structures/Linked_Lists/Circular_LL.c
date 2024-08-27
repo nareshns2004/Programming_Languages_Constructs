@@ -9,12 +9,13 @@ struct Node{
 void LinkedListTraversal(struct Node * head)
 {
     struct Node* ptr = head;
-    while(ptr->next!=head)
+    do
     {
         printf("%d\n",ptr->data);
         ptr=ptr->next;
-    }
-    printf("%d\n",ptr->data);
+        
+    }while(ptr!=head);
+    
 }
 
 int main()
