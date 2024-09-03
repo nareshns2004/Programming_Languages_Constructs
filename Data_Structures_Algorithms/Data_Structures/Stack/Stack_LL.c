@@ -9,13 +9,20 @@ struct Node
 
 void printStack(struct Node* top)
 {
-    printf("The Stack Elements are:\n");
+     if(top==NULL)
+    {
+        printf("\nStack is Empty\n");
+    }
+
+    printf("\nThe Stack Elements are:\n");
     while(top!=NULL)
     {
         
         printf("%d\n",top->data);
         top = top->next;
     }
+
+   
 }
 
 void isEmpty(struct Node* top)
@@ -29,7 +36,7 @@ void isEmpty(struct Node* top)
 void isFull(struct Node* top)
 {
     
-        printf("Criteria is Full\n");
+        printf("Criteria Yet Not Decide for Full Stack\n");
     
 }
 
@@ -44,6 +51,32 @@ struct Node* pushStack(struct Node* top, int x)
     return top;
 
 } 
+
+struct Node* popStack(struct Node* top)
+{
+    struct Node* ptr = top->next;
+    top->next = NULL;
+    top = ptr;
+
+    return top;
+
+}
+
+struct Node* peekStack(struct Node* top, int ind)
+{
+    for(int i=0;i<ind;i++)
+    {
+        top=top->next;
+        if(top==NULL)
+        {
+            printf("\nInvalid Index");
+            return NULL;
+        }
+    }
+
+    printf("\nPeek Value: %d",top->data);
+    return top;
+}
 
 int main()
 {
@@ -73,7 +106,11 @@ int main()
 
     //popStack(top);
     //pushStack(top, x);
-    printStack(pushStack(top, x));
+    struct Node* top1 = pushStack(top, x);
+    printStack(top1);
+    printStack(popStack(top1));
+    int ind = 9;
+    peekStack(top, ind);
 
     return 0;
 
