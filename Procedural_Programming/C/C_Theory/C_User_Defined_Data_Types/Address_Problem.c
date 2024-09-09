@@ -11,12 +11,13 @@ struct Address
     char state[100];    
 };
 
+
 int main()
 {
-    struct Address s[5];
+    struct Address s[1];
     
 
-    for(int i=0;i<5;i++)
+    for(int i=0;i<1;i++)
     {
         printf("\nEnter the House No: ");
         scanf("%d",&s[i].house_no);
@@ -28,7 +29,7 @@ int main()
         scanf("%s",s[i].state);
     }
 
-    for(int i=0;i<5;i++)
+    for(int i=0;i<1;i++)
     {
         printf("\nThe Residents Adresses are: \n");
         printf("%d Resident House No: %d\n",i, s[i].house_no);
