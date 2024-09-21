@@ -85,8 +85,10 @@ struct Node* insertBST(struct Node* root, int ele)
             prev->left = elm;
         }
 
+        
+
     
-        return root;
+        return elm;
 }
 
 struct Node* searchIter(struct Node* root,int ele)
@@ -141,9 +143,9 @@ else{
     printf("Element is not present\n");
 }
 
-insertBST(root,ele);
+//insertBST(root,ele);
 
-struct Node* ans2 = searchIter(root,ele);
+struct Node* ans2 = insertBST(root,ele);
 
 if(ans2!=NULL)
 {
@@ -152,6 +154,8 @@ if(ans2!=NULL)
 else{
     printf("Element is not Added\n");
 }
+
+
 
     return 0;
 }

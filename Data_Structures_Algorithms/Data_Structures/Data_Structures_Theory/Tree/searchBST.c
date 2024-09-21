@@ -41,6 +41,29 @@ struct Node* binarySearch(struct Node* root, int key)   //Binary Search in Tree
     return NULL;
 }
 
+struct Node* binaryIter(struct Node* root, int key)
+{
+
+    while(root!=NULL)
+    {
+        if(root->data == key)
+        {
+            return root;
+        }
+        else if(key>root->data)
+        {
+            root = root->right;
+        }
+        else{
+            root = root->left;
+        }
+
+        return NULL;
+
+    }
+
+}
+
 int main()
 {
 
@@ -57,8 +80,9 @@ l1->right = l3;
 int key = 0;
 printf("Enter the Key Please:\n");
 scanf("%d",&key);
+struct Node* ans = binaryIter(root,key);
 
-struct Node* ans = binarySearch(root,key);
+//struct Node* ans = binarySearch(root,key);
 
 //printf("%p",ans);
 if(ans!=NULL)
