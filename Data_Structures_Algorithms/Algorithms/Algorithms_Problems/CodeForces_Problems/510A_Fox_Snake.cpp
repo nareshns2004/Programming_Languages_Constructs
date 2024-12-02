@@ -1,30 +1,36 @@
 #include <iostream>
-#include <vector>
-#include <string>
 using namespace std;
 
 int main() {
-    int n, m;
-    cin >> n >> m;
 
-    vector<string> grid(n, string(m, '.'));
+int n,m;
+cin>>n>>m;
+int oddness=0;
+for(int i=0;i<n;i++){
+	if(i%2==0){
 
-    for (int i = 0; i < n; ++i) {
-        if (i % 4 == 0) {
-            // Fill the entire row with '#'
-            grid[i] = string(m, '#');
-        } else if (i % 4 == 1) {
-            // Only the last column is '#'
-            grid[i][m - 1] = '#';
-        } else if (i % 4 == 3) {
-            // Only the first column is '#'
-            grid[i][0] = '#';
-        }
-    }
+	for(int j=0;j<m;j++){
+		cout<<"#";}
+	}
+		else {
+			++oddness;
+			for(int j=0;j<m;j++){
+					if(oddness%2==1&&j==m-1){
+						cout<<"#";
+					}
+					else if(oddness%2==0&&j==0){
+						cout<<"#";
 
-    for (const auto& row : grid) {
-        cout << row << endl;
-    }
+					}
+					else {
+						cout<<".";
+					}
+			}
+		}
+	cout<<"\n";
 
-    return 0;
+
+	}
+
+	return 0;
 }
