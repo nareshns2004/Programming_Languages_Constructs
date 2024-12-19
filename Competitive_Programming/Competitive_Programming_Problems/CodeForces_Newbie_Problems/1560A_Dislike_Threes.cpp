@@ -1,33 +1,24 @@
 #include <iostream>
-using namespace std;
 
-int main()
-{
+int main() {
     int t;
-    cin>>t;
+    std::cin >> t;
 
-    while(t--){
+    while (t--) {
         int k;
-        cin>>k;
-        int cnt=0;
+        std::cin >> k;
 
-        for(int i=0;i<k;i++){
+        int count = 0;
+        int num = 1;
 
-            cnt++;
-
-            if(cnt%3==0){
-                cnt++;
+        while (count < k) {
+            if (num % 3 != 0 && num % 10 != 3) {
+                count++;
             }
-
-            if(cnt%10==3){
-                cnt++;
-            }
-
-           
+            num++;
         }
 
-        cout<<cnt<<endl;
-
+        std::cout << num - 1 << std::endl;
     }
 
     return 0;
