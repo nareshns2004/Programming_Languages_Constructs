@@ -1,3 +1,3 @@
-<h3><b>Logic, Procedural, Object, Scripting, Functional, DSA, CP etc</b></h3>
+<h3><b>C, C++, Java, Python, JavaScript, Rust, C#, Golang etc</b></h3>
 
 
