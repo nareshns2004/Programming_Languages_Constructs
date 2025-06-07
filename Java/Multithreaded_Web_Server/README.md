@@ -68,10 +68,6 @@ Recognizing the importance of scalability and stability, a thread pool was intro
 
 Ensure you have the Java Development Kit (JDK) installed on your machine. Clone the repository:
 
-```bash
-git clone https://github.com/rohitreddy192/Multithreaded-Web-Server.git
-```
-
 ### Running the Source Code
   1. **Compile the Source Code**
   2. **Run the Server**
