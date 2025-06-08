@@ -1,96 +1,175 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+// #pragma GCC optimize("Ofast")
+// #pragma GCC optimize("unroll-loops")
+
 using namespace std;
- 
-struct Node {
-  long long val;
-  Node() : val(0) {}
-  Node(long long v) : val(v) {}
-  friend Node merge(Node l, Node r) { return Node(l.val + r.val); }
-  void update(long long v) { val = v; }
-};
- 
-struct SegmentTree {
-  int n;
-  vector<Node> seg;
-  SegmentTree(int _n) : n(_n), seg(2 * _n) {}
-  template <typename Type>
-  SegmentTree(vector<Type> a) {
-    n = int(a.size());
-    seg.resize(2 * n);
-    for (int i = 0; i < n; i++) seg[i + n] = Node(a[i]);
-    for (int i = n - 1; i > 0; i--)
-      seg[i] = merge(seg[i << 1], seg[i << 1 | 1]);
-  }
-  void update(int i, long long v) {
-    for (seg[i += n].update(v); i >>= 1;)
-      seg[i] = merge(seg[i << 1], seg[i << 1 | 1]);
-  }
-  Node query(int l, int r) {
-    if (l > r) return Node();
-    Node resl, resr;
-    for (l += n, r += n + 1; l < r; l >>= 1, r >>= 1) {
-      if (l & 1) resl = merge(resl, seg[l++]);
-      if (r & 1) resr = merge(seg[--r], resr);
+using namespace __gnu_pbds;
+
+#define ll long long
+#define f(i, n) for (ll i = 0; i < n; i++)
+#define ia(a, n) \
+    ll a[n];     \
+    f(i, n) cin >> a[i]
+#define iv(v, n)     \
+    vector<ll> v(n); \
+    f(i, n) cin >> v[i]
+#define MOD (1000000007)
+#define INF 1000000000000000000LL // Infinity for ll
+#define mp make_pair
+#define nline '\n'
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
+
+template <typename T>
+using os = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+template <typename T>
+using oms = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+// read question properly
+// don't forget newlines!!!!!!
+// take care about cin >> t;
+// comment the optimization before debugging
+// ALWAYS USE FIXED << SETPRECISION WHILE OUTPUTTING FLOATS
+
+vector<ll> par,si;
+vector<bool> cyc1, cyc2;
+
+ll fi(ll a) {
+    if(par[a] == a) return a;
+    else return par[a] = fi(par[a]);
+}
+
+void join(ll a, ll b){
+    a = fi(a);
+    b = fi(b);
+    if(a == b) {
+        if(cyc1[a]) {
+            cyc2[a] = true;
+        }
+        cyc1[a] = true;
+        return;
     }
-    return merge(resl, resr);
-  }
-};
- 
-int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
- 
-  auto solve = [&]() {
-    int n;
-    cin >> n;
- 
-    vector<int> a(n);
-    for (int i = 0; i < n; i++) cin >> a[i];
- 
-    vector<int> odd, even;
-    for (int i = 0; i < n; i++) {
-      if (i & 1)
-        odd.push_back(a[i]);
-      else
-        even.push_back(a[i]);
+    if(si[a] < si[b]) swap(a,b);
+    par[b] = a;
+    si[a] += si[b];
+    bool newc1 = (cyc1[a] || cyc1[b]);
+    bool newc2 = (cyc2[a] || cyc2[b] || (cyc1[a] && cyc1[b]));
+    cyc1[a] = newc1;
+    cyc2[a] = newc2;
+}
+
+ll power(ll a, ll b, ll m) {
+    ll ans = 1;
+    while(b) {
+        if(b & 1) ans = ans * a % MOD;
+        a = a * a % MOD;
+        b >>= 1;
     }
- 
-    auto findParity = [&](vector<int> &v) {
-      int m = v.size();
-      SegmentTree sg(n + 1);
-      int res = 0;
-      for (int i = 0; i < m; i++) {
-        sg.update(v[i], 1);
-        res += sg.query(v[i] + 1, n).val;
-      }
-      return res & 1;
+    return ans;
+}
+
+void solve()
+{
+    ll n,m,k;
+    cin >> n >> m >> k;
+
+    par.assign(n*m,0);
+    f(i,n*m){
+        par[i] = i;
+    }
+    si.assign(n*m,1);
+    cyc2.assign(n*m,false);
+    cyc1.assign(n*m,false);
+
+    vector<vector<bool>> vis(n,vector<bool>(m));
+
+    vector<pair<ll,ll>> v;
+    f(i,k+1) {
+        ll a,b;
+        cin >> a >> b;
+        a--,b--;
+        v.push_back(mp(a,b));
+    }
+
+    auto dist = [&](pair<ll,ll>& a,pair<ll,ll>& b) {
+        return abs(a.first - b.first) + abs(a.second - b.second);
     };
- 
-    int oddParity = findParity(odd);
-    int evenParity = findParity(even);
- 
-    sort(odd.begin(), odd.end());
-    sort(even.begin(), even.end());
- 
-    vector<int> ans(n);
-    for (int i = 0; i < n; i++) {
-      if (i & 1)
-        ans[i] = odd[i / 2];
-      else
-        ans[i] = even[i / 2];
+
+    auto sin = [&](pair<ll,ll> p) {
+        return p.first * m + p.second;
+    };
+
+    ll cnt = 0;
+
+    f(i,k){
+        if(dist(v[i],v[i+1]) != 2) {
+            cout << 0 << nline;
+            return;
+        }
+
     }
- 
-    if (oddParity != evenParity) swap(ans[n - 1], ans[n - 3]);
-    for (int i = 0; i < n; i++) cout << ans[i] << " ";
-    cout << "\n";
-  };
- 
-  int t = 1;
-  cin >> t;
- 
-  for (int tc = 1; tc <= t; tc++) {
-    solve();
-  }
- 
-  return 0;
+
+    f(i,k){
+        auto& a = v[i];
+        auto& b = v[i+1];
+        pair<ll,ll> c,d;
+        if(a.first != b.first && a.second != b.second){
+            c = mp(a.first,b.second);
+            d = mp(b.first,a.second);
+        }
+        else{
+            c = mp((a.first + b.first) >> 1, (a.second + b.second) >> 1);
+            d = c;
+        }
+           
+        join(sin(c), sin(d));
+        cnt += (c==d);
+    }
+
+    ll ans = 1;
+
+    f(i,n*m) {
+        if(par[i] != i) continue;
+        if(cyc2[i]) {
+            cout << 0 << nline;
+            return;
+        }
+        else if(cyc1[i]) {
+            ans = ans * 2 % MOD;
+        }
+        else{
+            ans = ans * si[i] % MOD;
+        }
+    }
+
+    cout << (ans * power(2,cnt*(MOD-2),MOD)) % MOD << nline;
+}
+
+int main()
+{
+#ifdef PRADY
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    clock_t T = clock();
+#endif
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    long long t = 1;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+    }
+
+#ifdef PRADY
+    cout << "\nTime taken: " << ((float)(clock() - T)) / CLOCKS_PER_SEC << " seconds";
+#endif
+    return 0;
 }
