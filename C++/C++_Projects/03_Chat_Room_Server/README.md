@@ -1,4 +1,4 @@
-# chatRoomCpp
+# Chat Room App
 
 ## Project Overview
 
