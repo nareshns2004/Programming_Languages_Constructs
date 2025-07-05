@@ -1,3 +1,4 @@
-<h3><b>Logic, Procedural, Object, Scripting, Functional, DSA, CP etc</b></h3>
+# C
 
-
+ * [C_Project](./C_Project)
+ * [C_Theory](./C_Theory)

@@ -1,3 +1,6 @@
-<h3><b>Core Java Projects</b></h3>
+# Java
+
+ * [Java_Project](./Java_Project)
+ * [Java_Theory](./Java_Theory)
 
 

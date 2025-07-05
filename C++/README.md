@@ -1,3 +1,4 @@
-<h3><b>Logic, Procedural, Object, Scripting, Functional, DSA, CP etc</b></h3>
+# C++
 
-
+ * [C++_Project](./C++_Project)
+ * [C++_Theory](./C++_Theory)

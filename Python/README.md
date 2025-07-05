@@ -1,3 +1,4 @@
-<h3><b>Logic, Procedural, Object, Scripting, Functional, DSA, CP etc</b></h3>
+# Python
 
-
+ * [Python_Project](./Python_Project)
+ * [Python_Theory](./Python_Theory)
