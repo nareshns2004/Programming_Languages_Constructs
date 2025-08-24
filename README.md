@@ -6,6 +6,6 @@
  * [JavaScript](./JavaScript)
  * [Python](./Python)
  * [Golang](./Golang)
- * [C#](./C#)
+ * [CSharp](./CSharp)
  * [Rust](./Rust)
 
