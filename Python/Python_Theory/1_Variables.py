@@ -9,7 +9,6 @@ a = 1
 b = 2
 c = 3
 
-print(a,b,c, sep = ",")
+a,b,c, sep = ","
 d,e,f = 3,4,5
 
-print(d,e,f, sep=",")
