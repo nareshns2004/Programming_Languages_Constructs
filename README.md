@@ -5,7 +5,3 @@
  * [Java](./Java)
  * [JavaScript](./JavaScript)
  * [Python](./Python)
- * [Golang](./Golang)
- * [CSharp](./CSharp)
- * [Rust](./Rust)
-
